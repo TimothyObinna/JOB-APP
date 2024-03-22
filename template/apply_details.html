@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Review</title>
+</head>
+<body>
+    <h1>Application Review</h1>
+    <p>Please review your application before submission:</p>
+    <div>
+        <h2>Job Details</h2>
+        <p><strong>Title:</strong> {{ job.title }}</p>
+        <p><strong>Description:</strong> {{ job.description }}</p>
+        <p><strong>Requirements:</strong> {{ job.requirements }}</p>
+    </div>
+    <div>
+        <h2>Application Details</h2>
+        <p><strong>Resume:</strong> {{ application_data.resume }}</p>
+        <p><strong>Cover Letter:</strong> {{ application_data.cover_letter }}</p>
+    </div>
+    <form action="{% url 'application_review' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Submit Application</button>
+    </form>
+</body>
+</html>

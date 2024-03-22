@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+{% block 'contents' %}
+
+<style>
+  /* .container-form{
+    border: blue;
+    width: 70%;
+    margin: auto;
+  } */
+
+  .container-form{
+        width: 60%;
+        margin: auto;
+        /* margin-bottom: 10px; */
+        background-color: whitesmoke;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+    .update{
+      text-align: center;
+      align-self: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bolder;
+    }
+    .container1{
+      background-color: darkslategrey;
+      padding-top: 30px;
+      padding-bottom: 30px;
+
+    }
+</style>
+
+<body>
+    <div class="container1">
+       <div class="container-form"><br>
+        <h2 class="update"><strong>Update Your Profile</strong></h2>
+        <form method="post" action="{% url 'updateprofile' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label for="fullname"><strong>Full Name:</strong></label>
+          <input type="text" class="form-control" name="fullname" value="{{ profile.fullname }}"><br>
+    
+          <label for="address"><strong>Address:</strong></label>
+          <input type="text" class="form-control" name="address" value="{{ profile.address }}"><br>
+    
+          <label for="dob"><strong>Date of Birth:</strong></label>
+          <input type="date" class="form-control" name="dob" value="{{ profile.dob }}"><br>
+    
+          <label for="profile_image"><strong>Profile Image:</strong></label>
+          <input type="file" class="form-control" name="profile_image"><br>
+    
+          <button class="btn btn-primary" type="submit">Save Changes</button><br>
+        </form><br>
+       </div>
+      </div>
+  {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html>

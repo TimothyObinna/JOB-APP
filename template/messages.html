@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <style>
+        
+        .mb-1 {
+         margin-bottom: 0.25rem!important;
+        }
+        .mt-1 {
+        margin-top: 0.25rem!important;
+        width: 61.5%;
+        margin: auto;
+        }
+    </style>
+
+   
+    </head>
+    <body>
+            
+        <div class="container">
+
+            {% if messages %}
+
+            <div class="messages mt-1 mb-1 text-center" id="msg">
+                {% for mymessage in messages %}
+                {% if mymessage.tags %}
+                <div class="{{mymessage.tags}}" role="alert" style="padding: 5px; font-size: 18px;">
+                 {% endif %}
+                 {{mymessage}}
+                </div>
+
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+        </div>
+        
+        <script>
+            setTimeout(function() {
+                if ($('#msg').length > 0) {
+                    $('#msg').remove();
+                }
+            }, 5000)
+        </script>
+  </body>
+</html>

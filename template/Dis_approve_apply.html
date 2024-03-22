@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+
+{% block 'contents' %}
+
+<style>
+    .container1{
+        background-color: darkgrey;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .container2{
+        background-color: rgb(255, 255, 255);
+        width: 60%;
+        margin: auto;
+        border: dashed;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+   
+    
+    .ab{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+</style>
+<body>
+
+    <div class="container1">
+        <div class="container2">
+            <h1 class="ab text-primary">Application Disapproval</h1>
+            <p><strong>Applicant: </strong><h2 class="card-title">{{application.full_name}}</h2></p>
+            <p class="card-text"><Strong>Address: </Strong>{{ application.address }}</p>
+            <p class="card-text"><strong>Job Title: </strong>{{ application.job | slice:":96" }}</p>
+            <p class="card-text"><Strong>Resume: </Strong>{{ application.resume }}</p>
+            <p class="card-text"><strong>Cover Letter: </strong>{{ application.cover_letter}}</p>
+            <p class="card-text"><strong>Date: </strong>{{ application.date}} <br><SPan><strong>Status: </strong ><span class="text">{{ application.application_status}}</span></SPan></p>
+            <p class="card-text"></p>
+            <p class="text text-danger">Are you sure you want to disapprove this application?</p>
+
+            <form method="post" action="#">
+                {% csrf_token %}
+                
+                <!-- Your form fields -->
+                
+                
+                <button class="btn btn-primary" type="submit">Disapprove</button>
+            </form>
+
+        </div>
+    </div>
+    
+
+    {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html>

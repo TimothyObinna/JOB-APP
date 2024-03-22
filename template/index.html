@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+
+<html lang="en">
+  {% block 'contents' %}
+    
+
+    <body style="background-color: rgb(214, 214, 221);">
+        <!-- Responsive navbar-->
+       
+
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            {% include "messages.html" %}
+            <!-- Heading Row-->
+
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+
+                <div class="col-lg-7">
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="../static/assets/images-1.jpg" class="d-block w-100 h-25" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="../static/assets/images-2.jpg" class="d-block w-100 h-25" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="../static/assets/image-3.jpg" class="d-block w-100 h-25" alt="...">
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" style="height: 400px; width: 1000px;" src="../static/assets/images-1.jpeg" alt="..." /></div> -->
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light text-black"><strong class="a text-primary">{{request.user}}</strong>, WELCOME To The Kings Job Arena.</h1>
+                    {% comment %} <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p> {% endcomment %}
+                    <a class="btn btn-primary" href="#!">Call to Action!</a>
+                </div>
+            </div>
+            <!-- Call to Action-->
+            <div class="card text-white bg-secondary my-5 py-4 text-center" class="placeholder-glow">
+                <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+            </div>
+            <!-- Content Row-->
+           
+            <div class="row gx-4 gx-lg-5">
+                {% for job in jobs %}
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">{{job.title}}</h2>
+                            <p class="card-text">{{ job.description | slice:":96" }}...</p>
+                            <p class="card-text"><strong>Company:</strong> {{ job.company}}</p>
+                            <p class="card-text"><strong>Field:</strong> {{ job.area_of_interest }}</p>
+                            <p class="card-text"><strong>Date:</strong> {{ job.posted_date }}</p> 
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="{% url "jobdetails" job.pk %}">More Info</a>
+                            {% if user.is_staff %}
+                            <a class="btn btn-success btn-sm" href="{% url "edit_job" job.pk %}">Edit Advert</a>
+                            <a class="btn btn-danger btn-sm" href="{% url "job_delete" job.pk %}">Delete</a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+           
+        </div>
+        <!-- Footer-->
+        {% include "footer.html" %}
+        
+    </body>
+    {% endblock 'contents' %}
+</html>

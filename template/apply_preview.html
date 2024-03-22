@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Preview</title>
+</head>
+
+
+{% block 'contents' %}
+
+<style>
+    .container-1{
+        background-color: darkgrey;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .container-2{
+        background-color: rgb(255, 255, 255);
+        width: 60%;
+        margin: auto;
+        border: dashed;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .c-flex{
+        display: flex;
+        margin: auto;
+    }
+    .edit{
+        margin-left: 60px;
+        padding-left: 50px;
+        padding-right: 100px;
+    }
+    .ab{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+</style>
+
+<body>
+   <div class="container-1">
+    <div class="container-2">
+        <h1 class="ab"><strong>Application Preview</strong></h1>
+        <p><strong>Job Title:</strong> {{ job.title }}</p>
+        <p><strong>Applicant:</strong> {{ applicant.username }}</p>
+        <p><strong>Full Name:</strong> {{ full_name }}</p>
+        <p><strong>Address:</strong> {{ address }}</p>
+        <p><strong>Date of Birth:</strong> {{ dob }}</p>
+        <p><strong>Resume:</strong> {{ resume.name }}</p>
+        <p><strong>Cover Letter:</strong> {{ cover_letter.name }}</p>
+        <form method="post" action="{% url 'submit_application' job.pk %}">
+            {% csrf_token %}
+            <div class="c-flex">
+                <div class="submit"><button type="submit" class="btn btn-success">Submit</button></div>
+                <div class="edit"><a href="{% url 'apply_job' job.pk %}" class="btn btn-primary">Edit</a></div>
+            </div>
+
+        </form>
+        
+    </div>
+   </div>
+
+    {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html>

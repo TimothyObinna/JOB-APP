@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+
+<html lang="en">
+  {% block 'contents' %}
+    
+  <style>
+    .container{
+        width: 90%;
+        
+    }
+
+    .card-body{
+        margin-top: 20px;
+    }
+    .cont{
+        background-color: cadetblue;
+        padding-top: 40px;
+    }
+    .text{
+        color: green;
+    }
+   
+  </style>
+
+    <body>
+        <!-- Responsive navbar-->
+       
+
+        <!-- Page Content-->
+        <div class="cont">
+            {% include "messages.html" %}
+
+           
+
+            <div class="container px-4 px-lg-5" >
+                <!-- Heading Row-->
+                
+                <!-- Call to Action-->
+               
+                <!-- Content Row-->
+                
+               
+                <div class="row gx-4 gx-lg-5">
+                    {% if not saved_jobs %}
+                
+                    <div class="container ">
+                        <div class="text-center my-5 text-danger bg-white">
+                        
+                            <p class="lead mb-0" style="font-weight: bolder;">Sorry! You have not saved any Job Advert.</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    {% for app in saved_jobs %}
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                               
+                                <p class="card-text"><Strong>User: </Strong>{{ app.user  }}</p>
+                                <p class="card-text"><strong>Job Title: </strong>{{ app.job }}</p>
+                                <p class="card-text"><strong>Job Description: </strong>{{ app.description | slice:":53" }}....</p>
+                                <p class="card-text"><strong>Job Requirements: </strong>{{ app.requirements | slice:":53" }}</p>
+                                <p class="card-text"><strong>Company: </strong>{{ app.company }}</p>
+                                <p class="card-text"><strong>Field: </strong>{{ app.area_of_interest}}</p>
+                                <p class="card-text"><strong>Date: </strong>{{ app.saved_date}}</p>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary btn-sm" href="{% url "jobdetails" job.pk %}">Job Details</a>
+                                <a class="btn btn-danger btn-sm" href="{% url "delete_app" app.pk %}">Delete</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+                {% endif %}
+               
+            </div>
+        </div>
+        <!-- Footer-->
+        {% include "footer.html" %}
+        
+    </body>
+    {% endblock 'contents' %}
+</html>

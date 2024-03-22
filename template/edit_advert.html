@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+
+{% block 'contents' %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job</title>
+</head>
+
+<style>
+    .container2{
+        width: 60%;
+        margin: auto;
+        margin-bottom: 10px;
+        background-color: whitesmoke;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+    .edit{
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bolder;
+    }
+    .container1{
+        background-color: darkslategrey;
+    }
+</style>
+
+<body>
+   
+    
+    <div class="container1">
+        <div class="container2">
+            <h1 class="edit">Edit Job Advert Here</h1>
+            <form method="post" action="#">
+                {% csrf_token %}
+
+                  
+                
+                <label for="id_title"><strong>Title:</strong></label>
+                <input type="text" id="id_title" class="form-control" name="title" value="{{job_post.title}}" required>
+        
+                <label for="id_description"><strong>Description:</strong></label>
+                <textarea id="id_description" class="form-control" name="description" rows="4" cols="50" required>{{ job_post.description }}</textarea>
+        
+                <label for="id_requirements"><strong>Requirements:</strong></label>
+                <textarea id="id_requirements" class="form-control" name="requirements" rows="4" cols="50" required>{{ job_post.requirements }}</textarea>
+
+                <label for="company"><strong>Organization:</strong></label>
+                <input type="text" class="form-control" name="company" value="{{ job_post.company }}" required>
+        
+                <label for="area_of_interest"><strong>Select Job Field:</strong></label>
+                <select class="form-control" name="area_of_interest" required>
+                {% for choice in Interest %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+                </select><br>
+                
+        
+                <button class="btn btn-success" type="submit">Update Job</button>
+            </form>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html>
+

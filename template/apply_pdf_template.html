@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-header {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Application Details</h1>
+    <div class="section">
+        <p class="section-header">Full Name:</p>
+        <p>{{ full_name }}</p>
+    </div>
+    <div class="section">
+        <p class="section-header">Address:</p>
+        <p>{{ address }}</p>
+    </div>
+    <div class="section">
+        <p class="section-header">Date of Birth:</p>
+        <p>{{ dob }}</p>
+    </div>
+</body>
+</html>

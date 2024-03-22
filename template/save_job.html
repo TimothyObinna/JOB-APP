@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+
+<html lang="en">
+    
+   {% block 'contents' %}
+   
+   
+
+    <style>
+
+        .form-con{
+            width: 60%;
+            margin: auto;
+            margin-bottom: 40px;
+        }
+        
+        .p{
+            text-align: center;
+        }
+
+
+        .pix{
+            text-align: center;
+        }
+        
+        .pix img{
+            border-radius: 5px;
+        }
+
+        .btn1{
+            text-align: center;
+        }
+
+        .bt{
+            width: 20%;
+            font-size: 17px;
+        }
+
+
+    </style>
+
+    
+    <body>
+        <div class="container">
+
+            <div class="container">
+
+                <div class="text-center my-5 text-success">
+                    <h3>Save Job Advert.</h3>
+                </div>
+
+            </div>
+
+            <div class="container-form">
+
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-con">
+                        
+                        <div class="t mb-3">
+                            <h3>Job Details:</h3>
+                            <P><strong>Title: </strong>{{jobsave.title}}</P>
+                            <P><strong>Description: </strong>{{jobsave.description}}</P>
+                            <P><strong>Requirements: </strong>{{jobsave.requirements}}</P>
+                            <P><strong>Organization: </strong>{{jobsave.company}}</P>
+                            <P><strong>Field: </strong>{{jobsave.area_of_interest}}</P>
+                            <P><strong>Date: </strong>{{jobsave.posted_date}}</P>
+                            
+ 
+
+
+                        <div class="p mb-4 fw-bolder text-success fst-italic">
+                            <p><strong>{{request.user}}</strong>, Are you sure you want to save this Job Advert?</p>                         
+                        </div>
+                        
+                        <div class="mb-3 btn1">
+                            <input type="submit" value="Save Advert" class="btn btn-success bt">
+                            <a href="{% url 'dashboard' %}"><input type="text" value="Back to Home" class="btn btn-secondary bt"></a>
+                        </div> 
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer-->
+
+        {% include 'footer.html' %}
+    
+    </body>
+
+    {% endblock 'contents' %}
+   
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+
+<html lang="en">
+  {% block 'contents' %}
+    
+  <style>
+    .container{
+        width: 90%;
+        
+    }
+
+    .card-body{
+        margin-top: 20px;
+    }
+    .cont{
+        background-color: cadetblue;
+        padding-top: 40px;
+    }
+    .text{
+        color: green;
+    }
+   
+  </style>
+
+    <body>
+        <!-- Responsive navbar-->
+       
+
+        <!-- Page Content-->
+        <div class="cont">
+            {% include "messages.html" %}
+
+            <div class="container px-4 px-lg-5" >
+                <!-- Heading Row-->
+                
+                <!-- Call to Action-->
+               
+                <!-- Content Row-->
+               
+                <div class="row gx-4 gx-lg-5">
+                    {% for app in approved %}
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <strong>Applicant: </strong><h2 class="card-title">{{app.full_name}}</h2>
+                                <p class="card-text"><Strong>Address: </Strong>{{ app.address }}</p>
+                                <p class="card-text"><strong>Job Title: </strong>{{ app.job | slice:":96" }}</p>
+                                <p class="card-text"><Strong>Resume: </Strong>{{ app.resume }}</p>
+                                <p class="card-text"><strong>Cover Letter: </strong>{{ app.cover_letter}}</p>
+                                <p class="card-text"><strong>Date: </strong>{{ app.date}} <br><SPan><strong>Status: </strong ><span class="text">{{ app.application_status}}</span></SPan></p>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary btn-sm" href="{% url "disapproved" app.pk %}">Dis-approve</a>
+                                <a class="btn btn-danger btn-sm" href="{% url "delete_app" app.pk %}">Delete</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+               
+            </div>
+        </div>
+        <!-- Footer-->
+        {% include "footer.html" %}
+        
+    </body>
+    {% endblock 'contents' %}
+</html>

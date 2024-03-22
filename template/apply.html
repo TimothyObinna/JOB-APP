@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+{% block 'contents' %}
+
+<style>
+    .container-2{
+        border: unset;
+        border-color: blue;
+        border-width: 10px;
+        width: 60%;
+        margin: auto;
+        padding: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: aliceblue;
+    }
+    body{
+        background-color: rgba(47, 79, 79, 0.524);
+    }
+</style>
+
+<body>
+   <div class="container-1">
+    <div class="container-2">
+        <h1>Apply for {{ job.title }}</h1>
+        <form method="post" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group" style="font-size: 15px;">
+                <input type="text" class="form-control form-control-user" id="full_name" name="full_name" placeholder="Full Name">
+            </div>
+
+            <div class="form-group" style="font-size: 15px;">
+                <input type="text" class="form-control form-control-user" id="address" name="address" placeholder="Address">
+            </div>
+
+            <div class="form-group" style="font-size: 15px;">
+                <label for="Date_of_Birth">Date of Birth:</label>
+                <input type="date" class="form-control form-control-user" id="dob" name="dob" placeholder="Date of Birth">
+            </div>
+
+            <div class="form-group" style="font-size: 15px;">
+                <label for="resume">Resume:</label>
+            <input type="file" class="form-control form-control-user" name="resume" id="resume" required><br>
+            </div>
+
+            <div class="form-group" style="font-size: 15px;">
+                <label for="cover_letter">Cover Letter:</label><br>
+            <input type="file" class="form-control form-control-user" name="cover_letter" id="cover_letter" required><br>
+            </div>
+            
+    
+            
+    
+            <button class="btn btn-primary" type="submit">Apply</button>
+        </form>
+    </div>
+   </div>
+    {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html>
+
+
+
+{% comment %} <!DOCTYPE html>
+{% extends "header.html" %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Detail</title>
+</head>
+
+{% block 'contents' %}
+
+
+<body>
+    <h1>{{ job_details.title }}</h1>
+    <p><strong>Description:</strong> {{ job_details.description }}</p>
+    <p><strong>Requirements:</strong> {{ job_details.requirements }}</p>
+    <p><strong>Company:</strong> {{ job_details.company.name }}</p>
+    <p><strong>Posted By:</strong> {{ job_details.posted_by.username }}</p>
+    <p><strong>Posted On:</strong> {{ job_details.posted_on }}</p> {% endcomment %}
+
+    <!-- Add a link to apply for the job -->
+    {% comment %} <a href="{% url 'apply_job' job_details.pk %}">Apply for this job</a>
+
+    {% include "footer.html" %}
+</body>
+{% endblock 'contents' %}
+</html> {% endcomment %}
